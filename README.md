@@ -3,7 +3,7 @@
 A modern and interactive **Sorting Algorithm Visualizer** built using **HTML, CSS, and JavaScript**.
 
 ## 🚀 Live Demo
-👉 https://your-ISHAANYADAV8.github.io/sorting-visualizer/
+👉 https://ishaanyadav8.github.io/sorting-visualizer/
 
 ---
 
