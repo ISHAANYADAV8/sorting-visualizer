@@ -3,33 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sorting Visualizer</title>
+  <title>Sort Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Sorting Visualizer</h1>
+  <div class="bg-grid"></div>
 
-  <div class="controls">
-    <button onclick="generateArray()">Generate Array</button>
-    <button onclick="startSort()">Start</button>
+  <header>
+    <div class="logo">
+      <span class="logo-bracket">[</span>
+      SORT<span class="logo-accent">LAB</span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <p class="tagline">Visualize. Understand. Sort.</p>
+  </header>
 
-    <label for="algorithm">Algorithm:</label>
-<select id="algorithm">
-  <option value="bubble">Bubble Sort</option>
-  <option value="selection">Selection Sort</option>
-  <option value="insertion">Insertion Sort</option>
-  <option value="merge">Merge Sort</option>
-  <option value="quick">Quick Sort</option>
-</select>
+  <main>
 
-    <label for="speed">
-      Speed: <span id="speed-value">300</span>
-    </label>
-    <input type="range" id="speed" min="50" max="1000" value="300">
-  </div>
+    <!-- Controls Panel -->
+    <div class="panel controls-panel">
 
-  <div id="array-container"></div>
+      <div class="control-group">
+        <label class="control-label">ALGORITHM</label>
+        <div class="algo-grid" id="algo-grid">
+          <button class="algo-btn active" data-algo="bubble">Bubble</button>
+          <button class="algo-btn" data-algo="selection">Selection</button>
+          <button class="algo-btn" data-algo="insertion">Insertion</button>
+          <button class="algo-btn" data-algo="merge">Merge</button>
+          <button class="algo-btn" data-algo="quick">Quick</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">ARRAY SIZE <span class="control-val" id="size-val">20</span></label>
+        <div class="slider-track">
+          <input type="range" id="size-input" min="5" max="80" value="20">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">DELAY (ms) <span class="control-val" id="delay-val">80</span></label>
+        <div class="slider-track">
+          <input type="range" id="delay-input" min="5" max="500" value="80">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">SOUND</label>
+        <div class="toggle-row">
+          <button class="toggle-btn active" id="sound-toggle">🔊 ON</button>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-generate" id="generate-btn" onclick="generateArray()">NEW ARRAY</button>
+        <button class="btn-start" id="start-btn" onclick="startSort()">▶ START</button>
+        <button class="btn-stop" id="stop-btn" onclick="stopSort()" disabled>■ STOP</button>
+      </div>
+
+    </div>
+
+    <!-- Visualizer -->
+    <div class="panel visualizer-panel">
+      <div class="vis-header">
+        <span id="algo-label">BUBBLE SORT</span>
+        <span class="vis-status" id="vis-status">READY</span>
+      </div>
+
+      <div id="array-container"></div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-label">COMPARISONS</span>
+          <span class="stat-val" id="stat-comp">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">SWAPS</span>
+          <span class="stat-val" id="stat-swap">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">ARRAY ACCESS</span>
+          <span class="stat-val" id="stat-acc">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">TIME ELAPSED</span>
+          <span class="stat-val" id="stat-time">0ms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="panel info-panel" id="info-panel">
+      <div class="info-name" id="info-name">Bubble Sort</div>
+      <div class="info-complexities">
+        <div class="complexity">
+          <span class="c-label">BEST</span>
+          <span class="c-val" id="c-best">O(n)</span>
+        </div>
+        <div class="complexity">
+          <span class="c-label">AVG</span>
+          <span class="c-val" id="c-avg">O(n²)</span>
+        </div>
+        <div class="complexity">
+          <span class="c-label">WORST</span>
+          <span class="c-val" id="c-worst">O(n²)</span>
+        </div>
+        <div class="complexity">
+          <span class="c-label">SPACE</span>
+          <span class="c-val" id="c-space">O(1)</span>
+        </div>
+      </div>
+      <p class="info-desc" id="info-desc">Repeatedly steps through the list, compares adjacent elements and swaps them if they're in the wrong order. Simple but inefficient for large datasets.</p>
+    </div>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
